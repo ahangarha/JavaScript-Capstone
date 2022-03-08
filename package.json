@@ -2,7 +2,7 @@
   "name": "javascript-capstone",
   "version": "1.0.0",
   "description": "Capstone project for Module 2",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "webpack serve --open",
     "build": "webpack",
