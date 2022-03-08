@@ -27,3 +27,9 @@ header .nav-links {
   gap: 1rem;
   list-style: none;
 }
+
+footer {
+	padding: 1rem;
+	text-align: center;
+	border-top: 2px solid #000;
+}
