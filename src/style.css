@@ -44,9 +44,13 @@ footer {
   position: fixed;
   inset: 0;
   padding: 1rem;
-  background: white;
+  background: #0009;
   max-height: 100vh;
   display: none;
+}
+
+#comment-popup.show {
+  display: block;
 }
 
 #comment-popup .comment-popup-wrapper {
@@ -54,6 +58,7 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  background: #fff;
   position: relative;
   overflow-y: auto;
   height: 100%;
@@ -61,14 +66,14 @@ footer {
 }
 
 #close-popup-button {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
   font-size: 3rem;
   line-height: 2rem;
   z-index: 5;
   padding: 0.5rem;
-  background-color: #fff7;
+  background-color: #fff;
   cursor: pointer;
 }
 
