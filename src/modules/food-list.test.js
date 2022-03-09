@@ -22,3 +22,17 @@ describe('Get likes', () => {
     expect(foodList.foods['2'].title).toBe('second food');
   });
 });
+
+describe('Get likes', () => {
+  const foodList = new FoodList();
+  foodList.addFood('11', '', '');
+
+  test('no like returns 0', () => {
+    expect(foodList.getLikes('11')).toBe(0);
+  });
+
+  test('five likes', () => {
+    foodList.foods['11'].likes = 5;
+    expect(foodList.getLikes('11')).toBe(5);
+  });
+});
