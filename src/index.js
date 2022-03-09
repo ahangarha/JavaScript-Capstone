@@ -11,7 +11,7 @@ const foodListWrapper = document.getElementById('home');
 const commentPopup = document.getElementById('comment-popup');
 
 const displayPopUp = (id) => {
-  const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const URL = `${FOOD_API_BASE_URL}lookup.php?i=${id}`;
 	getData(URL).then((res) => {
 		const foodItem = res.meals[0]
 		commentPopup.classList.add('show');
