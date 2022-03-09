@@ -1,4 +1,4 @@
-import getData from './modules/api-utils.js';
+import getData, { sendData } from './modules/api-utils.js';
 import FoodList from './modules/food-list.js';
 
 import './style.css';
@@ -28,6 +28,17 @@ function getComments(id) {
   });
 }
 
+function addComment(id, input, textarea) {
+  const ADD_COMMENT_URL = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT;
+  const data = {
+    item_id: id,
+    username: input.value,
+    comment: textarea.value,
+  };
+
+  sendData(ADD_COMMENT_URL, data);
+}
+
 const displayPopUp = (id) => {
   commentPopup.classList.add('show');
   commentPopup.innerHTML = `      <div id="close-popup-button">&times;</div>
@@ -53,7 +64,14 @@ const displayPopUp = (id) => {
     </div>`;
   const closeBtn = document.getElementById('close-popup-button');
   closeBtn.addEventListener('click', () => {
-    commentPopup.classList.remove('show');
+		commentPopup.classList.remove('show');
+		const input = document.querySelector('input');
+		const textarea = document.querySelector('textarea');
+		const form = document.querySelector('form');
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			addComment(id, input, textarea);
+		})
   });
   // fetching more details
   const URL = `${FOOD_API_BASE_URL}lookup.php?i=${id}`;
