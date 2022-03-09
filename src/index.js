@@ -11,7 +11,6 @@ const foodListWrapper = document.getElementById('home');
 const commentPopup = document.getElementById('comment-popup');
 
 const displayPopUp = (id) => {
-  console.log(id);
   const URL = `${FOOD_API_BASE_URL}lookup.php?i=${id}`;
   getData(URL).then((res) => {
     const foodItem = res.meals[0];
@@ -58,7 +57,7 @@ function showAllFood() {
   Object.keys(foodList.foods).forEach((foodId) => {
     const food = foodList.foods[foodId];
     foodListWrapper.innerHTML += `
-    <div class="food-card" id="${foodId}">
+    <div class="food-card" id="${food.id}">
       <img src="${food.image}" alt="image of meal" />
       <div class="mid-sec">
         <h3 class="food-title">${food.title}</h3>
@@ -70,13 +69,6 @@ function showAllFood() {
       <button class="btn comments-button">comments</button>
     </div>
     `;
-  });
-
-  const commentsButtons = foodListWrapper.querySelectorAll('.comments-button');
-  commentsButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      displayPopUp(btn.parentElement.id);
-    });
   });
 }
 
@@ -92,6 +84,12 @@ function getAllFoodData() {
         );
       });
       resolve();
+    });
+    const commentsButtons = foodListWrapper.querySelectorAll('.comments-button');
+    commentsButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        displayPopUp(btn.parentElement.id);
+      });
     });
   });
 }
