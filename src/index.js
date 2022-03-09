@@ -10,6 +10,44 @@ const ALL_FOOD_API_URL = FOOD_API_BASE_URL + ALL_FOOD_ENDPOINT;
 const foodListWrapper = document.getElementById('home');
 const commentPopup = document.getElementById('comment-popup');
 
+const displayPopUp = (id) => {
+  const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+	getData(URL).then((res) => {
+		const foodItem = res.meals[0]
+		commentPopup.classList.add('show');
+		commentPopup.innerHTML = `      <div id="close-popup-button">&times;</div>
+      <div class="comment-popup-wrapper">
+        <img id="food-image" src="${foodItem.strMealThumb}" alt="" />
+        <h2 id="food-title">${foodItem.strMeal}</h2>
+        <p id="food-description">${foodItem.strInstructions}</p>
+
+        <h3>Comments:</h3>
+        <ul id="comments">
+          <li class="comment">
+            <h4 class="comment-author">#</h4>
+            <p class="comment-message">#</p>
+          </li>
+        </ul>
+
+        <h3>Add Comment:</h3>
+        <form id="comment-form">
+          <input type="text" name="name" placeholder="Your Name" />
+          <textarea
+            name="comment"
+            rows="5"
+            placeholder="Your Comment"
+          ></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>`;
+		
+		const closeBtn = document.getElementById(`close-popup-button`);
+		closeBtn.addEventListener('click', () => {
+			commentPopup.classList.remove('show')
+		})
+	});
+}
+
 function getAllFoodDataAndRender() {
   getData(ALL_FOOD_API_URL).then((res) => {
     const allFood = res.meals;
