@@ -12,10 +12,10 @@ const commentPopup = document.getElementById('comment-popup');
 
 const displayPopUp = (id) => {
   const URL = `${FOOD_API_BASE_URL}lookup.php?i=${id}`;
-	getData(URL).then((res) => {
-		const foodItem = res.meals[0]
-		commentPopup.classList.add('show');
-		commentPopup.innerHTML = `      <div id="close-popup-button">&times;</div>
+  getData(URL).then((res) => {
+    const foodItem = res.meals[0];
+    commentPopup.classList.add('show');
+    commentPopup.innerHTML = `      <div id="close-popup-button">&times;</div>
       <div class="comment-popup-wrapper">
         <img id="food-image" src="${foodItem.strMealThumb}" alt="" />
         <h2 id="food-title">${foodItem.strMeal}</h2>
@@ -40,13 +40,13 @@ const displayPopUp = (id) => {
           <button type="submit">Submit</button>
         </form>
       </div>`;
-		
-		const closeBtn = document.getElementById(`close-popup-button`);
-		closeBtn.addEventListener('click', () => {
-			commentPopup.classList.remove('show')
-		})
-	});
-}
+
+    const closeBtn = document.getElementById('close-popup-button');
+    closeBtn.addEventListener('click', () => {
+      commentPopup.classList.remove('show');
+    });
+  });
+};
 
 function getAllFoodDataAndRender() {
   getData(ALL_FOOD_API_URL).then((res) => {
@@ -69,13 +69,13 @@ function getAllFoodDataAndRender() {
         <button class="btn comments-button">comments</button>
       </div>
       `;
-		});
-		const commentsButtons = foodListWrapper.querySelectorAll('.comments-button');
-		commentsButtons.forEach(btn => {
-			btn.addEventListener('click', () => {
-				displayPopUp(btn.parentElement.id)
-			})
-		})
+    });
+    const commentsButtons = foodListWrapper.querySelectorAll('.comments-button');
+    commentsButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        displayPopUp(btn.parentElement.id);
+      });
+    });
   });
 }
 
