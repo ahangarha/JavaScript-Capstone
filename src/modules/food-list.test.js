@@ -52,3 +52,26 @@ describe('Set likes', () => {
     expect(foodList.getLikes('11')).toBe(5);
   });
 });
+
+describe('Get human readable like counter', () => {
+  const foodList = new FoodList();
+
+  test('zero like', () => {
+    foodList.addFood('11', '', '');
+    foodList.setLikes('11', 0);
+    expect(foodList.getLikesText('11')).toBe('0 like');
+  });
+
+  test('one like', () => {
+    foodList.addFood('22', '', '');
+    foodList.setLikes('22', 1);
+    expect(foodList.getLikesText('22')).toBe('1 like');
+  });
+
+  test('many likes', () => {
+    foodList.addFood('33', '', '');
+    foodList.setLikes('33', 2);
+    // console.log(foodList.foods);
+    expect(foodList.getLikesText('33')).toBe('2 likes');
+  });
+});
