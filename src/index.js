@@ -8,6 +8,7 @@ const ALL_FOOD_ENDPOINT = 'filter.php?a=Jamaican';
 const ALL_FOOD_API_URL = FOOD_API_BASE_URL + ALL_FOOD_ENDPOINT;
 
 const foodListWrapper = document.getElementById('home');
+const commentPopup = document.getElementById('comment-popup');
 
 function getAllFoodDataAndRender() {
   getData(ALL_FOOD_API_URL).then((res) => {
@@ -30,7 +31,13 @@ function getAllFoodDataAndRender() {
         <button class="btn comments-button">comments</button>
       </div>
       `;
-    });
+		});
+		const commentsButtons = foodListWrapper.querySelectorAll('.comments-button');
+		commentsButtons.forEach(btn => {
+			btn.addEventListener('click', () => {
+				displayPopUp(btn.parentElement.id)
+			})
+		})
   });
 }
 
