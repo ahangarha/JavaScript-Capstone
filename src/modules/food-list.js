@@ -17,6 +17,14 @@ export default class FoodList {
   }
 
   getLikes(id) {
-    return this.foods[id].likes;
+    return this.foods[id].likes || 0;
+  }
+
+  getLikesText(id) {
+    const likes = this.getLikes(id);
+    if (likes <= 1) {
+      return `${likes} like`;
+    }
+    return `${likes} likes`;
   }
 }

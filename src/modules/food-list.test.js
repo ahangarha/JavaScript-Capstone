@@ -1,13 +1,77 @@
 import FoodList from './food-list.js';
 
-test('add new food', () => {
+describe('Get likes', () => {
   const foodList = new FoodList();
-  const id = '1';
-  const title = 'the title';
-  const imageUrl = 'image url';
 
-  foodList.addFood(id, title, imageUrl);
+  test('add new food', () => {
+    const id = '1';
+    const title = 'the title';
+    const imageUrl = 'image url';
 
-  expect(foodList.foods[id].title).toBe(title);
-  expect(foodList.foods[id].image).toBe(imageUrl);
+    foodList.addFood(id, title, imageUrl);
+
+    expect(foodList.foods[id].title).toBe(title);
+    expect(foodList.foods[id].image).toBe(imageUrl);
+  });
+
+  test('add extra food', () => {
+    foodList.addFood('2', 'second food', 'second image');
+    const numberOfFood = Object.keys(foodList.foods).length;
+
+    expect(numberOfFood).toBe(2);
+    expect(foodList.foods['2'].title).toBe('second food');
+  });
+});
+
+describe('Get likes', () => {
+  const foodList = new FoodList();
+  foodList.addFood('11', '', '');
+
+  test('no like returns 0', () => {
+    expect(foodList.getLikes('11')).toBe(0);
+  });
+
+  test('five likes', () => {
+    foodList.foods['11'].likes = 5;
+    expect(foodList.getLikes('11')).toBe(5);
+  });
+});
+
+describe('Set likes', () => {
+  const foodList = new FoodList();
+
+  test('zero like', () => {
+    foodList.addFood('11', '', '');
+    foodList.setLikes('11', 2);
+    expect(foodList.getLikes('11')).toBe(2);
+  });
+
+  test('zero like', () => {
+    foodList.addFood('11', '', '');
+    foodList.setLikes('11', 5);
+    expect(foodList.getLikes('11')).toBe(5);
+  });
+});
+
+describe('Get human readable like counter', () => {
+  const foodList = new FoodList();
+
+  test('zero like', () => {
+    foodList.addFood('11', '', '');
+    foodList.setLikes('11', 0);
+    expect(foodList.getLikesText('11')).toBe('0 like');
+  });
+
+  test('one like', () => {
+    foodList.addFood('22', '', '');
+    foodList.setLikes('22', 1);
+    expect(foodList.getLikesText('22')).toBe('1 like');
+  });
+
+  test('many likes', () => {
+    foodList.addFood('33', '', '');
+    foodList.setLikes('33', 2);
+    // console.log(foodList.foods);
+    expect(foodList.getLikesText('33')).toBe('2 likes');
+  });
 });

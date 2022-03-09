@@ -1,4 +1,4 @@
-import getData from './modules/api-utils.js';
+import { getData, sendData } from './modules/api-utils.js';
 import FoodList from './modules/food-list.js';
 
 import './style.css';
@@ -6,6 +6,11 @@ import './style.css';
 const FOOD_API_BASE_URL = 'https://www.themealdb.com/api/json/v1/1/';
 const ALL_FOOD_ENDPOINT = 'filter.php?a=Jamaican';
 const ALL_FOOD_API_URL = FOOD_API_BASE_URL + ALL_FOOD_ENDPOINT;
+
+const INV_API_BASE = 'https://us-central1-involvement-api.cloudfunctions.net/'
+  + 'capstoneApi/apps/';
+const INV_API_KEY = 'zX9lc5HNiZeTfJrwouGw';
+const LIKES_ENDPOINT = '/likes';
 
 const foodListWrapper = document.getElementById('home');
 const commentPopup = document.getElementById('comment-popup');
@@ -50,6 +55,24 @@ const displayPopUp = (id) => {
 
 const foodList = new FoodList();
 
+function likeFood(id) {
+  const url = INV_API_BASE + INV_API_KEY + LIKES_ENDPOINT;
+  const data = {
+    item_id: id,
+  };
+
+  // update like counter
+  sendData(url, data).then((res) => {
+    if (res.status === 201) {
+      const newLikes = foodList.getLikes(id) + 1;
+      foodList.setLikes(id, newLikes);
+      const likeWrapper = document.getElementById(id);
+      const counterElement = likeWrapper.querySelector('.likes-counter');
+      counterElement.innerHTML = foodList.getLikesText(id);
+    }
+  });
+}
+
 function showAllFood() {
   // clear loading text
   foodListWrapper.innerHTML = '';
@@ -63,12 +86,22 @@ function showAllFood() {
         <h3 class="food-title">${food.title}</h3>
         <div class="likes">
           <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <div class="likes-counter">5 likes</div>
+          <div class="likes-counter">
+            ${foodList.getLikesText(foodId)}
+          </div>
         </div>
       </div>
       <button class="btn comments-button">comments</button>
     </div>
     `;
+  });
+
+  const likeButtons = foodListWrapper.querySelectorAll('.likes');
+  likeButtons.forEach((likeBtn) => {
+    const foodId = likeBtn.parentElement.parentElement.id;
+    likeBtn.addEventListener('click', () => {
+      likeFood(foodId);
+    });
   });
 }
 
@@ -93,11 +126,6 @@ function getAllFoodData() {
     });
   });
 }
-
-const INV_API_BASE = 'https://us-central1-involvement-api.cloudfunctions.net/'
-  + 'capstoneApi/apps/';
-const INV_API_KEY = 'zX9lc5HNiZeTfJrwouGw';
-const LIKES_ENDPOINT = '/likes';
 
 function getAllLikes() {
   return new Promise((resolve) => {
