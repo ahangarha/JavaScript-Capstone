@@ -63,7 +63,9 @@ function showAllFood() {
         <h3 class="food-title">${food.title}</h3>
         <div class="likes">
           <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <div class="likes-counter">5 likes</div>
+          <div class="likes-counter">
+            ${foodList.getLikesText(foodId)}
+          </div>
         </div>
       </div>
       <button class="btn comments-button">comments</button>
