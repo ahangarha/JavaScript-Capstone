@@ -36,3 +36,19 @@ describe('Get likes', () => {
     expect(foodList.getLikes('11')).toBe(5);
   });
 });
+
+describe('Set likes', () => {
+  const foodList = new FoodList();
+
+  test('zero like', () => {
+    foodList.addFood('11', '', '');
+    foodList.setLikes('11', 2);
+    expect(foodList.getLikes('11')).toBe(2);
+  });
+
+  test('zero like', () => {
+    foodList.addFood('11', '', '');
+    foodList.setLikes('11', 5);
+    expect(foodList.getLikes('11')).toBe(5);
+  });
+});
