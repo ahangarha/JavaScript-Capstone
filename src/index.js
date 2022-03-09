@@ -14,6 +14,7 @@ const LIKES_ENDPOINT = '/likes';
 
 const foodListWrapper = document.getElementById('home');
 const commentPopup = document.getElementById('comment-popup');
+const itemCounter = document.getElementById('counter');
 
 const displayPopUp = (id) => {
   const URL = `${FOOD_API_BASE_URL}lookup.php?i=${id}`;
@@ -76,6 +77,7 @@ function likeFood(id) {
 function showAllFood() {
   // clear loading text
   foodListWrapper.innerHTML = '';
+  let counter = 0;
 
   Object.keys(foodList.foods).forEach((foodId) => {
     const food = foodList.foods[foodId];
@@ -94,8 +96,8 @@ function showAllFood() {
       <button class="btn comments-button">comments</button>
     </div>
     `;
+    counter += 1;
   });
-
   const likeButtons = foodListWrapper.querySelectorAll('.likes');
   likeButtons.forEach((likeBtn) => {
     const foodId = likeBtn.parentElement.parentElement.id;
@@ -103,6 +105,8 @@ function showAllFood() {
       likeFood(foodId);
     });
   });
+
+  itemCounter.innerHTML = counter;
 }
 
 function getAllFoodData() {
