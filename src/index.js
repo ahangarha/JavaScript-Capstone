@@ -1,4 +1,5 @@
 import getData from './modules/api-utils.js';
+import FoodList from './modules/food-list.js';
 
 import './style.css';
 
@@ -47,27 +48,42 @@ const displayPopUp = (id) => {
   });
 };
 
-function getAllFoodDataAndRender() {
-  getData(ALL_FOOD_API_URL).then((res) => {
-    const allFood = res.meals;
+const foodList = new FoodList();
 
-    // clear loading text
-    foodListWrapper.innerHTML = '';
+function showAllFood() {
+  // clear loading text
+  foodListWrapper.innerHTML = '';
 
-    allFood.forEach((food) => {
-      foodListWrapper.innerHTML += `
-      <div class="food-card" id="${food.idMeal}">
-        <img src="${food.strMealThumb}" alt="image of meal" />
-        <div class="mid-sec">
-          <h3 class="food-title">${food.strMeal}</h3>
-          <div class="likes">
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <div class="likes-counter">5 likes</div>
-          </div>
+  Object.keys(foodList.foods).forEach((foodId) => {
+    const food = foodList.foods[foodId];
+    foodListWrapper.innerHTML += `
+    <div class="food-card" id="${food.id}">
+      <img src="${food.image}" alt="image of meal" />
+      <div class="mid-sec">
+        <h3 class="food-title">${food.title}</h3>
+        <div class="likes">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <div class="likes-counter">5 likes</div>
         </div>
-        <button class="btn comments-button">comments</button>
       </div>
-      `;
+      <button class="btn comments-button">comments</button>
+    </div>
+    `;
+  });
+}
+
+function getAllFoodData() {
+  return new Promise((resolve) => {
+    getData(ALL_FOOD_API_URL).then((res) => {
+      const allFood = res.meals;
+      allFood.forEach((food) => {
+        foodList.addFood(
+          food.idMeal,
+          food.strMeal,
+          food.strMealThumb,
+        );
+      });
+      resolve();
     });
     const commentsButtons = foodListWrapper.querySelectorAll('.comments-button');
     commentsButtons.forEach((btn) => {
@@ -83,16 +99,20 @@ const INV_API_BASE = 'https://us-central1-involvement-api.cloudfunctions.net/'
 const INV_API_KEY = 'zX9lc5HNiZeTfJrwouGw';
 const LIKES_ENDPOINT = '/likes';
 
-const likes = {};
-
 function getAllLikes() {
-  const ALL_LIKES_API_URL = INV_API_BASE + INV_API_KEY + LIKES_ENDPOINT;
-
-  const likesObjects = getData(ALL_LIKES_API_URL);
-  likesObjects.forEach((likeObject) => {
-    likes[likeObject.item_id] = likeObject.likes;
+  return new Promise((resolve) => {
+    const ALL_LIKES_API_URL = INV_API_BASE + INV_API_KEY + LIKES_ENDPOINT;
+    getData(ALL_LIKES_API_URL).then((likesFromAPI) => {
+      likesFromAPI.forEach((likeObject) => {
+        foodList.setLikes(likeObject.item_id, likeObject.likes);
+      });
+      resolve();
+    });
   });
 }
 
-getAllFoodDataAndRender();
-getAllLikes();
+getAllFoodData().then(() => {
+  getAllLikes().then(() => {
+    showAllFood();
+  });
+});
