@@ -36,7 +36,7 @@ function addComment(id, input, textarea) {
     comment: textarea.value,
   };
 
-  sendData(ADD_COMMENT_URL, data);
+  sendData(ADD_COMMENT_URL, data).then((res) => console.log(res));
 }
 
 const displayPopUp = (id) => {
@@ -59,7 +59,7 @@ const displayPopUp = (id) => {
           rows="5"
           placeholder="Your Comment"
         ></textarea>
-        <button type="submit">Submit</button>
+        <button>Submit</button>
       </form>
     </div>`;
   const closeBtn = document.getElementById('close-popup-button');
@@ -67,9 +67,8 @@ const displayPopUp = (id) => {
 		commentPopup.classList.remove('show');
 		const input = document.querySelector('input');
 		const textarea = document.querySelector('textarea');
-		const form = document.querySelector('form');
-		form.addEventListener('submit', (e) => {
-			e.preventDefault();
+		const form = document.querySelector('button');
+		form.addEventListener('submit', () => {
 			addComment(id, input, textarea);
 		})
   });
