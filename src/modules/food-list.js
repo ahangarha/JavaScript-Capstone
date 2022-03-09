@@ -11,7 +11,9 @@ export default class FoodList {
   }
 
   setLikes(id, likes) {
-    this.foods[id].likes = likes;
+    if (Object.keys(this.foods).includes(id)) {
+      this.foods[id].likes = likes;
+    }
   }
 
   getLikes(id) {
