@@ -57,7 +57,7 @@ function showAllFood() {
   Object.keys(foodList.foods).forEach((foodId) => {
     const food = foodList.foods[foodId];
     foodListWrapper.innerHTML += `
-    <div class="food-card" id="${food.id}">
+    <div class="food-card" id="${foodId}">
       <img src="${food.image}" alt="image of meal" />
       <div class="mid-sec">
         <h3 class="food-title">${food.title}</h3>
