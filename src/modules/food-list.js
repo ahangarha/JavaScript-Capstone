@@ -7,7 +7,6 @@ export default class FoodList {
     this.foods[id] = {
       title,
       image,
-
     };
   }
 
