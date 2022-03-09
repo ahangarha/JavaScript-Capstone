@@ -4,8 +4,8 @@ import FoodList from './modules/food-list.js';
 import './style.css';
 
 const foodList = new FoodList();
-const INV_API_BASE = 'https://us-central1-involvement-api.cloudfunctions.net/'
-  + 'capstoneApi/apps/';
+const INV_API_BASE = 'https://us-central1-involvement-api.cloudfunctions.net/' +
+  'capstoneApi/apps/';
 const INV_API_KEY = 'zX9lc5HNiZeTfJrwouGw';
 const LIKES_ENDPOINT = '/likes';
 const COMMENT_ENDPOINT = '/comments';
@@ -22,7 +22,6 @@ function getComments(id) {
     const parameter = `?item_id=${id}`;
     const COMMENT_API = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT + parameter;
     getData(COMMENT_API).then((commentsFromAPI) => {
-      console.log(commentsFromAPI);
       foodList.addComments(id, commentsFromAPI);
       resolve();
     });
@@ -65,7 +64,6 @@ const displayPopUp = (id) => {
   });
   getComments(id).then(() => {
     const { comments } = foodList.foods[id];
-    console.log({ comments });
     const commentWrapper = document.getElementById('comments');
     comments.forEach((comment) => {
       commentWrapper.innerHTML += `<li class="comment">
