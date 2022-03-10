@@ -75,3 +75,18 @@ describe('Get human readable like counter', () => {
     expect(foodList.getLikesText('33')).toBe('2 likes');
   });
 });
+
+describe('Count all food items', () => {
+  test('count 0 items', () => {
+    const foodList = new FoodList();
+    expect(foodList.getItemsCount()).toBe(0);
+  });
+
+  test('count multiply items', () => {
+    const foodList = new FoodList();
+    foodList.addFood('123', '', '');
+    foodList.addFood('333', '', '');
+    foodList.addFood('222', '', '');
+    expect(foodList.getItemsCount()).toBe(3);
+  });
+});
