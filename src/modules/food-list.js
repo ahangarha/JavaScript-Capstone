@@ -35,4 +35,8 @@ export default class FoodList {
   getComments(id) {
     return this.foods[id].comments;
   }
+
+  getCommentsCount(id) {
+    return this.foods[id].comments.length;
+  }
 }
