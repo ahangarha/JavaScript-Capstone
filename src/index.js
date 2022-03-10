@@ -53,24 +53,26 @@ const displayPopUp = (id) => {
 
       <h3>Add Comment:</h3>
       <form id="comment-form">
-        <input type="text" name="name" placeholder="Your Name" />
+        <input type="text" name="name" id="input" placeholder="Your Name" />
         <textarea
           name="comment"
           rows="5"
+          id = "textarea"
           placeholder="Your Comment"
         ></textarea>
-        <button>Submit</button>
+        <button id="button">Submit</button>
       </form>
     </div>`;
+  const input = document.getElementById('input');
+  const textarea = document.getElementById('textarea');
+  const form = document.getElementById('button');
+  form.addEventListener('click', (e) => {
+    e.preventDefault();
+    addComment(id, input, textarea);
+  });
   const closeBtn = document.getElementById('close-popup-button');
   closeBtn.addEventListener('click', () => {
-		commentPopup.classList.remove('show');
-		const input = document.querySelector('input');
-		const textarea = document.querySelector('textarea');
-		const form = document.querySelector('button');
-		form.addEventListener('submit', () => {
-			addComment(id, input, textarea);
-		})
+    commentPopup.classList.remove('show');
   });
   // fetching more details
   const URL = `${FOOD_API_BASE_URL}lookup.php?i=${id}`;
