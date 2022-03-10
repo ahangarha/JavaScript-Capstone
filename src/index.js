@@ -145,14 +145,7 @@ function showAllFood() {
 function getAllFoodData() {
   return new Promise((resolve) => {
     getData(ALL_FOOD_API_URL).then((res) => {
-      const allFood = res.meals;
-      allFood.forEach((food) => {
-        foodList.addFood(
-          food.idMeal,
-          food.strMeal,
-          food.strMealThumb,
-        );
-      });
+      foodList.addFoods(res.meals);
       resolve();
     });
   });

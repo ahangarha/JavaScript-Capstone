@@ -10,6 +10,16 @@ export default class FoodList {
     };
   }
 
+  addFoods(allFoods) {
+    allFoods.forEach((food) => {
+      this.addFood(
+        food.idMeal,
+        food.strMeal,
+        food.strMealThumb,
+      );
+    });
+  }
+
   setLikes(id, likes) {
     if (Object.keys(this.foods).includes(id)) {
       this.foods[id].likes = likes;
