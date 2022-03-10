@@ -91,8 +91,26 @@ describe('Count all food items', () => {
   });
 });
 
-test('count 0 comment', () => {
-  const foodlist = new FoodList();
-  foodlist.addFood('111', '', '');
-  expect(foodlist.getCommentsCount('111')).toBe(0);
+describe('count comments', () => {
+  test('count 0 comment', () => {
+    const foodlist = new FoodList();
+    foodlist.addFood('111', '', '');
+    expect(foodlist.getCommentsCount('111')).toBe(0);
+  });
+
+  test('count multiple comments', () => {
+    const foodList = new FoodList();
+    foodList.addFood('111', '', '');
+    foodList.addComments('111', [{
+      comment: '',
+      creation_date: '',
+      username: '',
+    },
+    {
+      comment: '',
+      creation_date: '',
+      username: '',
+    }]);
+    expect(foodList.getCommentsCount('111')).toBe(2);
+  });
 });
