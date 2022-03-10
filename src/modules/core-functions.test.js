@@ -14,5 +14,7 @@ test('Get correct number of items by calling food API', () => {
   // act
   getAllFoodData().then(() => {
     expect(foodList.getItemsCount()).toBe(3);
+  }).catch(() => {
+    expect(foodList.getItemsCount()).toBe(0);
   });
 });
