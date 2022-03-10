@@ -19,8 +19,4 @@ export default class FoodList {
   getLikes(id) {
     return this.foods[id].likes;
   }
-
-  addComments(id, comments) {
-    this.foods[id].comments = comments;
-  }
 }

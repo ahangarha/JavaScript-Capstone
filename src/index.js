@@ -1,11 +1,11 @@
-import getData, { sendData } from './modules/api-utils.js';
+import getData from './modules/api-utils.js';
 import FoodList from './modules/food-list.js';
 
 import './style.css';
 
 const foodList = new FoodList();
-const INV_API_BASE = 'https://us-central1-involvement-api.cloudfunctions.net/' +
-  'capstoneApi/apps/';
+const INV_API_BASE = 'https://us-central1-involvement-api.cloudfunctions.net/'
+  + 'capstoneApi/apps/';
 const INV_API_KEY = 'zX9lc5HNiZeTfJrwouGw';
 const LIKES_ENDPOINT = '/likes';
 const COMMENT_ENDPOINT = '/comments';
@@ -22,21 +22,11 @@ function getComments(id) {
     const parameter = `?item_id=${id}`;
     const COMMENT_API = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT + parameter;
     getData(COMMENT_API).then((commentsFromAPI) => {
+      if (commentsFromAPI.error) commentsFromAPI = [];
       foodList.addComments(id, commentsFromAPI);
       resolve();
     });
   });
-}
-
-function addComment(id, input, textarea) {
-  const ADD_COMMENT_URL = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT;
-  const data = {
-    item_id: id,
-    username: input.value,
-    comment: textarea.value,
-  };
-
-  sendData(ADD_COMMENT_URL, data).then((res) => console.log(res));
 }
 
 const displayPopUp = (id) => {
@@ -53,23 +43,15 @@ const displayPopUp = (id) => {
 
       <h3>Add Comment:</h3>
       <form id="comment-form">
-        <input type="text" name="name" id="input" placeholder="Your Name" />
+        <input type="text" name="name" placeholder="Your Name" />
         <textarea
           name="comment"
           rows="5"
-          id = "textarea"
           placeholder="Your Comment"
         ></textarea>
         <button id="button">Submit</button>
       </form>
     </div>`;
-  const input = document.getElementById('input');
-  const textarea = document.getElementById('textarea');
-  const form = document.getElementById('button');
-  form.addEventListener('click', (e) => {
-    e.preventDefault();
-    addComment(id, input, textarea);
-  });
   const closeBtn = document.getElementById('close-popup-button');
   closeBtn.addEventListener('click', () => {
     commentPopup.classList.remove('show');
@@ -84,12 +66,16 @@ const displayPopUp = (id) => {
   getComments(id).then(() => {
     const { comments } = foodList.foods[id];
     const commentWrapper = document.getElementById('comments');
-    comments.forEach((comment) => {
-      commentWrapper.innerHTML += `<li class="comment">
-      <h4 class="comment-author">${comment.username}</h4>
-      <p class="comment-message">${comment.comment}</p>
-      </li> `;
-    });
+    if (comments.length) {
+      comments.forEach((comment) => {
+        commentWrapper.innerHTML += `<li class="comment">
+        <h4 class="comment-author">${comment.username}</h4>
+        <p class="comment-message">${comment.comment}</p>
+        </li> `;
+      });
+    } else {
+      commentWrapper.innerHTML = 'no comments';
+    }
   });
 };
 
