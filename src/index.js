@@ -39,7 +39,7 @@ const displayPopUp = (id) => {
       <h2 id="food-title">${foodList.foods[id].title}</h2>
       <p id="food-description">...</p>
 
-      <h3>Comments:</h3>
+      <h3 id="comments-header">Comments:</h3>
       <ul id="comments">
       </ul>
 
@@ -67,8 +67,12 @@ const displayPopUp = (id) => {
   });
   getComments(id).then(() => {
     const { comments } = foodList.foods[id];
+    const commentsHeader = document.getElementById('comments-header');
     const commentWrapper = document.getElementById('comments');
     if (comments.length) {
+      // add counter to comments header
+      commentsHeader.innerHTML += `<span>${foodList.getCommentsCount(id)}</span>`;
+
       comments.forEach((comment) => {
         commentWrapper.innerHTML += `<li class="comment">
         <h4 class="comment-author">${comment.username}</h4>
