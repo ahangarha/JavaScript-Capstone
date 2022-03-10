@@ -171,8 +171,7 @@ function getAllLikes() {
 }
 
 function displayitemCounter() {
-  const foodlistObj = foodList.foods;
-  const size = Object.keys(foodlistObj).length;
+  const size = foodList.getItemsCount();
   itemCounter.innerHTML = `(${size})`;
 }
 
