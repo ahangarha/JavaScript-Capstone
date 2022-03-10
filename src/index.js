@@ -77,7 +77,6 @@ function likeFood(id) {
 function showAllFood() {
   // clear loading text
   foodListWrapper.innerHTML = '';
-  let counter = 0;
 
   Object.keys(foodList.foods).forEach((foodId) => {
     const food = foodList.foods[foodId];
@@ -96,7 +95,6 @@ function showAllFood() {
       <button class="btn comments-button">comments</button>
     </div>
     `;
-    counter += 1;
   });
   const likeButtons = foodListWrapper.querySelectorAll('.likes');
   likeButtons.forEach((likeBtn) => {
@@ -105,8 +103,6 @@ function showAllFood() {
       likeFood(foodId);
     });
   });
-
-  itemCounter.innerHTML = counter;
 }
 
 function getAllFoodData() {
@@ -143,8 +139,16 @@ function getAllLikes() {
   });
 }
 
+function displayitemCounter() {
+  const foodlistObj = foodList.foods;
+  const size = Object.keys(foodlistObj).length;
+  itemCounter.innerHTML = `(${size})`;
+}
+
 getAllFoodData().then(() => {
   getAllLikes().then(() => {
     showAllFood();
+  }).then(() => {
+    displayitemCounter();
   });
 });
