@@ -27,4 +27,8 @@ export default class FoodList {
     }
     return `${likes} likes`;
   }
+
+  addComments(id, comments) {
+    this.foods[id].comments = comments;
+  }
 }
