@@ -43,6 +43,11 @@ function postComment(id, input, textarea) {
     if (res.status === 201) {
       input.value = '';
       textarea.value = '';
+      const commentWrapper = document.getElementById('comments');
+      commentWrapper.innerHTML += `<li class="comment">
+        <h4 class="comment-author">${data.username}</h4>
+        <p class="comment-message">${data.comment}</p>
+        </li> `;
     }
   });
 }
