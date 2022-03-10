@@ -90,3 +90,9 @@ describe('Count all food items', () => {
     expect(foodList.getItemsCount()).toBe(3);
   });
 });
+
+test('count 0 comment', () => {
+  const foodlist = new FoodList();
+  foodlist.addFood('111', '', '');
+  expect(foodlist.getCommentsCount('111')).toBe(0);
+});
