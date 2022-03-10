@@ -31,6 +31,27 @@ function getComments(id) {
   });
 }
 
+function postComment(id, input, textarea) {
+  const ADD_COMMENT_URL = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT;
+  const data = {
+    item_id: id,
+    username: input.value,
+    comment: textarea.value,
+  };
+
+  sendData(ADD_COMMENT_URL, data).then((res) => {
+    if (res.status === 201) {
+      input.value = '';
+      textarea.value = '';
+      const commentWrapper = document.getElementById('comments');
+      commentWrapper.innerHTML += `<li class="comment">
+        <h4 class="comment-author">${data.username}</h4>
+        <p class="comment-message">${data.comment}</p>
+        </li> `;
+    }
+  });
+}
+
 const displayPopUp = (id) => {
   commentPopup.classList.add('show');
   commentPopup.innerHTML = `      <div id="close-popup-button">&times;</div>
@@ -45,15 +66,23 @@ const displayPopUp = (id) => {
 
       <h3>Add Comment:</h3>
       <form id="comment-form">
-        <input type="text" name="name" placeholder="Your Name" />
+        <input type="text" id="input" name="name" placeholder="Your Name" />
         <textarea
           name="comment"
           rows="5"
+          id = "textarea"
           placeholder="Your Comment"
         ></textarea>
         <button id="button">Submit</button>
       </form>
     </div>`;
+  const input = document.getElementById('input');
+  const textarea = document.getElementById('textarea');
+  const btn = document.getElementById('button');
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    postComment(id, input, textarea);
+  });
   const closeBtn = document.getElementById('close-popup-button');
   closeBtn.addEventListener('click', () => {
     commentPopup.classList.remove('show');
