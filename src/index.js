@@ -14,6 +14,7 @@ const LIKES_ENDPOINT = '/likes';
 
 const foodListWrapper = document.getElementById('home');
 const commentPopup = document.getElementById('comment-popup');
+const itemCounter = document.getElementById('counter');
 
 const displayPopUp = (id) => {
   const URL = `${FOOD_API_BASE_URL}lookup.php?i=${id}`;
@@ -95,7 +96,6 @@ function showAllFood() {
     </div>
     `;
   });
-
   const likeButtons = foodListWrapper.querySelectorAll('.likes');
   likeButtons.forEach((likeBtn) => {
     const foodId = likeBtn.parentElement.parentElement.id;
@@ -139,8 +139,16 @@ function getAllLikes() {
   });
 }
 
+function displayitemCounter() {
+  const foodlistObj = foodList.foods;
+  const size = Object.keys(foodlistObj).length;
+  itemCounter.innerHTML = `(${size})`;
+}
+
 getAllFoodData().then(() => {
   getAllLikes().then(() => {
     showAllFood();
+  }).then(() => {
+    displayitemCounter();
   });
 });
