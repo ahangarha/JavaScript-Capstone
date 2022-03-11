@@ -1,6 +1,6 @@
 import FoodList from './food-list.js';
 
-describe('Get likes', () => {
+describe('Add food', () => {
   const foodList = new FoodList();
 
   test('add new food', () => {
