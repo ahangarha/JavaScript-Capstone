@@ -8,10 +8,7 @@
 }
 
 body {
-  background: rgb(249,238,6);
-background: linear-gradient(36deg, rgba(249,238,6,1) 0%, rgba(0,0,0,1) 52%, rgba(0,155,58,1) 97%);
-background-repeat: no-repeat;
-background-size: cover;
+  background-color: #007749;
 }
 
 img {
@@ -37,7 +34,7 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: rgba(9, 73, 9, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(7px);
   z-index: 100;
 }
@@ -50,10 +47,16 @@ header .branding {
   text-shadow: 2px 2px #ff0000;
 }
 
+.header nav {
+  height: 100%;
+}
+
 header .nav-links {
   display: flex;
   gap: 1rem;
   list-style: none;
+  height: 100%;
+  border: 1px solid balck;
 }
 
 .nav-links li {
@@ -61,25 +64,37 @@ header .nav-links {
   text-align: center;
 }
 
-
-.nav-links li:hover{
-  transform: scale(0.9);
-  background-color: rgb(8, 49, 8)
+li a {
+  height: 100%;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  margin-left: 20px;
+  transition: all 0.5s ease;
 }
+
+.nav-links li + li {
+  border-left: 2px solid rgb(180, 180, 180);
+}
+
+li a:hover {
+  text-decoration: underline;
+  color: yellow;
+}
+
 
 main {
   max-width: 100%;
   width: 1100px;
   padding: 4rem;
   margin: 0 auto;
-  height: 100%;
 }
 
 #home {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 5rem;
+  height: 100%;
 }
 
 .food-card {
@@ -88,12 +103,11 @@ main {
   justify-content: space-between;
   width: 250px;
   max-width: 100%;
-  margin-bottom: 50px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(7px);
   border-radius: 15px;
-  box-shadow: 1px 4px 5px #000;
+  box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
   overflow: hidden;
   height: 400px;
 }
@@ -128,6 +142,8 @@ main {
 
 .likes > .likes-counter {
   color: #fff;
+  font-size: 12px;
+  margin-top: 7px;
 }
 
 .comments-button {
@@ -156,7 +172,14 @@ button:focus {
 footer {
   padding: 1rem;
   text-align: center;
-  border-top: 2px solid #000;
+  background-color: rgb(145, 182, 12);
+}
+
+footer p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: bolder;
+  color: white;
 }
 
 #comment-popup {
@@ -166,8 +189,7 @@ footer {
   max-height: 100vh;
   display: none;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px);
+  background-color: #f5f5f5;
 }
 
 #comment-popup.show {
@@ -175,36 +197,40 @@ footer {
 }
 
 #comment-popup .comment-popup-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  background: #fff;
-  position: relative;
+  background-color: #007749;
+  color: #f5f5f5;
   overflow-y: auto;
   height: 100%;
   padding: 1rem;
   border-radius: 15px;
+  box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
+  max-width: 950px;
+  margin: auto;
 }
 
 #close-popup-button {
   position: fixed;
-  right: 7rem;
-  top: 7rem;
-  height: 40px;
-  width: 40px;
+  right: 1.5rem;
+  top: 1.5rem;
   font-size: 3rem;
   line-height: 2rem;
   z-index: 5;
   padding: 0.5rem;
-  background-color: #fff;
+  background-color: rgba(205, 202, 50, 0);
   cursor: pointer;
-  border-radius: 50%;
 }
 
 #comment-popup #food-image {
-  max-width: 80%;
+  display: block;
+  max-width: 100%;
   max-height: 20rem;
+  border-radius: 10px;
+  box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.4);
 }
 
 #comments {
@@ -212,21 +238,61 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  width: 60%;
+  margin: 0 auto;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.comment-popup-wrapper #food-description {
+  font-family: 'Poppins', sans-serif;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#comments li  {
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 1rem;
+  border-radius: 0 10px 10px 10px;
+  box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
+}
+
+li .comment-author,
+.comment-message {
+  font-family: 'Poppins', sans-serif;
 }
 
 #comment-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.75rem;
+  width: 100%;
 }
 
 #comment-form input,
 #comment-form textarea {
   padding: 0.5rem;
-  border: 2px solid black;
-  width: 15rem;
+  border: none;
+  border-radius: 10px;
+  width: 60%;
+  box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
+  font-family: 'Poppins', sans-serif;
+}
+
+#comment-form input,
+#comment-form textarea:focus {
+  outline: none;
 }
 
 #comment-form button {
   align-self: center;
+  width: 30%;
+  border: none;
+  border-radius: 10px;
+  margin-top: 15px;
+  padding: 10px 0;
+  box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
 }
