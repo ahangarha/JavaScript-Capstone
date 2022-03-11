@@ -4,7 +4,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -20,6 +20,7 @@ img {
 
 a {
   text-decoration: none;
+  color: #f7f7f7;
 }
 
 button {
@@ -30,10 +31,11 @@ button {
 
 header {
   display: flex;
+  flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 2rem;
-  padding: 1rem 5rem;
+  gap: 1rem;
+  padding: 1rem;
   position: sticky;
   top: 0;
   width: 100%;
@@ -48,19 +50,17 @@ header .branding {
   font-size: 2.25rem;
   font-family: 'Rye', cursive;
   color: yellow;
-  text-shadow: 2px 2px #ff0000;
+  text-shadow: 2px 2px #f00;
 }
 
 .header nav {
   height: 100%;
+  color: #fff;
 }
 
 header .nav-links {
   display: flex;
-  gap: 1rem;
   list-style: none;
-  height: 100%;
-  border: 1px solid balck;
 }
 
 .nav-links li {
@@ -68,19 +68,15 @@ header .nav-links {
   text-align: center;
 }
 
-li a {
-  height: 100%;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  margin-left: 20px;
-  transition: all 0.5s ease;
-}
-
 .nav-links li + li {
   border-left: 2px solid rgb(180, 180, 180);
 }
 
-li a:hover {
+.nav-links li a {
+  padding: 0.5rem 1rem;
+}
+
+.nav-links li a:hover {
   text-decoration: underline;
   color: yellow;
 }
