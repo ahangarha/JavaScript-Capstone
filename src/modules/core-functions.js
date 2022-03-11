@@ -64,11 +64,12 @@ export function displayPopUp(id) {
 
       <h3>Add Comment:</h3>
       <form id="comment-form">
-        <input type="text" name="name" id="nameField" placeholder="Your Name" />
+        <input type="text" name="name" id="nameField" placeholder="Your Name" required />
         <textarea
           name="comment"
           rows="5"
           placeholder="Your Comment"
+          required
           id="messageField"
         ></textarea>
         <button id="button">Submit</button>
@@ -100,7 +101,7 @@ export function displayPopUp(id) {
     const commentWrapper = document.getElementById('comments');
     if (comments.length) {
       // add counter to comments header
-      commentsHeader.innerHTML += `<span>${foodList.getCommentsCount(id)}</span>`;
+      commentsHeader.innerHTML += `<span class="badge">${foodList.getCommentsCount(id)}</span>`;
 
       comments.forEach((comment) => {
         commentWrapper.innerHTML += `<li class="comment">
@@ -144,13 +145,13 @@ export function showAllFood() {
       <div class="mid-sec">
         <h3 class="food-title">${food.title}</h3>
         <div class="likes">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <i class="fa fa-heart" aria-hidden="true"></i>
           <div class="likes-counter">
             ${foodList.getLikesText(foodId)}
           </div>
         </div>
       </div>
-      <button class="btn comments-button">comments</button>
+      <button class="btn comments-button">more</button>
     </div>
     `;
   });
@@ -194,5 +195,5 @@ export function getAllLikes() {
 
 export function displayitemCounter() {
   const size = foodList.getItemsCount();
-  itemCounter.innerHTML = `(${size})`;
+  itemCounter.innerHTML = `<span class="badge">${size}<span>`;
 }
