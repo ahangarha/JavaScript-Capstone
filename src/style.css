@@ -23,6 +23,10 @@ a {
   color: #f7f7f7;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 button {
   padding: 0.25rem;
   border: 2px solid black;
@@ -100,7 +104,6 @@ main {
 .food-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 250px;
   max-width: 100%;
   text-align: center;
@@ -109,34 +112,42 @@ main {
   border-radius: 15px;
   box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  height: 400px;
+  min-height: 400px;
 }
 
 .food-card > img {
   transition: all 0.5s ease-in-out;
   display: block;
   border-radius: 15px 15px 0 0;
-}
-
-.mid-sec > .food-title {
-  width: 65%;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
+  height: 250px;
+  background-color: #0005;
 }
 
 .food-card > .mid-sec {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5px;
+  padding: 1rem;
+  flex-grow: 1;
 }
 
-.likes > i {
+.mid-sec > .food-title {
+  width: 65%;
+  color: #fff;
+  text-align: left;
+  line-height: 1.15em;
+}
+
+.likes {
+  cursor: pointer;
+}
+
+.likes > i.fa-heart {
   color: rgb(211, 151, 151);
-  transition: all 1s ease;
+  transition: color 300ms ease;
 }
 
-.likes > i:active {
+.likes:hover > i.fa-heart {
   color: red;
 }
 
