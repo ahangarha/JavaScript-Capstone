@@ -9,6 +9,9 @@
 
 body {
   background-color: #007749;
+  flex-direction: column;
+  display: flex;
+  min-height: 100vh;
 }
 
 img {
@@ -37,6 +40,7 @@ header {
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(7px);
   z-index: 100;
+  flex-shrink: 0;
 }
 
 header .branding {
@@ -81,12 +85,12 @@ li a:hover {
   color: yellow;
 }
 
-
 main {
   max-width: 100%;
   width: 1100px;
   padding: 4rem;
   margin: 0 auto;
+  flex-grow: 1;
 }
 
 #home {
@@ -173,6 +177,7 @@ footer {
   padding: 1rem;
   text-align: center;
   background-color: rgb(145, 182, 12);
+  flex-shrink: 0;
 }
 
 footer p {
