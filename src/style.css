@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&family=Rye&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&family=Rye&display=swap');
 
 * {
   padding: 0;
@@ -197,7 +197,7 @@ footer p {
 #comment-popup {
   position: fixed;
   inset: 0;
-  padding: 7rem;
+  padding: 1rem;
   max-height: 100vh;
   display: none;
   z-index: 1000;
@@ -213,7 +213,7 @@ footer p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   background-color: #007749;
   color: #f5f5f5;
   overflow-y: auto;
@@ -245,16 +245,29 @@ footer p {
   box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.4);
 }
 
+#comments-header {
+  display: flex;
+  align-items: center;
+}
+
+#comments-header span {
+  margin: 0.5rem;
+  padding: 0.25rem;
+  font-size: 0.7rem;
+  border-radius: 0.75rem;
+  background: #e3ac05;
+  color: #000c;
+}
+
 #comments {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  width: 60%;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
   color: #fff;
-  border-radius: 10px;
-  padding: 1rem;
 }
 
 .comment-popup-wrapper #food-description {
@@ -263,17 +276,23 @@ footer p {
   margin: 0 auto;
 }
 
-#comments li  {
-  margin-top: 20px;
-  background-color: rgba(0, 0, 0, 0.75);
+#comments li {
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 1rem;
-  border-radius: 0 10px 10px 10px;
+  border-radius: 0 1.5rem 1.5rem 1.5rem;
   box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
 }
 
-li .comment-author,
-.comment-message {
-  font-family: 'Poppins', sans-serif;
+#comments li:nth-child(even) {
+  border-radius: 1.5rem 0 1.5rem 1.5rem;
+}
+
+#comments li .comment-author {
+  font-weight: 700;
+}
+
+#comments li .comment-message {
+  font-size: 0.9rem;
 }
 
 #comment-form {
@@ -282,6 +301,7 @@ li .comment-author,
   align-items: center;
   gap: 0.75rem;
   width: 100%;
+  max-width: 400px;
 }
 
 #comment-form input,
@@ -289,7 +309,7 @@ li .comment-author,
   padding: 0.5rem;
   border: none;
   border-radius: 10px;
-  width: 60%;
+  width: 100%;
   box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
   font-family: 'Poppins', sans-serif;
 }
@@ -307,4 +327,10 @@ li .comment-author,
   margin-top: 15px;
   padding: 10px 0;
   box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 700px) {
+  #comment-popup {
+    padding: 10vh;
+  }
 }
