@@ -70,16 +70,14 @@ export const displayPopUp = (id) => {
           required
           id="messageField"
         ></textarea>
-        <button id="button">Submit</button>
+        <button id="button" type="submit">Submit</button>
       </form>
     </div>`;
 
-  const nameField = document.getElementById('nameField');
-  const messageField = document.getElementById('messageField');
-  const btn = document.getElementById('button');
-  btn.addEventListener('click', (e) => {
+  const commentForm = document.getElementById('comment-form');
+  commentForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    postComment(id, nameField, messageField);
+    postComment(id, e.target.name, e.target.comment);
   });
 
   const closeBtn = document.getElementById('close-popup-button');
