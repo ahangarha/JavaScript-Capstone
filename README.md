@@ -3,7 +3,7 @@
 # Taste Jamaica
 ### *A Microverse JavaScript Capstone Project*
 
-This is an educational project to make a web application that gets and post data to APIs. In this project one can see a list of Jamaican meals, like them or leave comments for each.
+This is an educational project to make a web application that gets and posts data to APIs. In this project, one can see a list of Jamaican meals, like them, or leave comments for each.
 
 ## Screenshot
 
@@ -61,7 +61,7 @@ $ npm test
 
 ## 🤝 Contributing
 
-As an educational project at this stage we are not supposed to accept any PR. Yet we appreciate if you can report problems in [issues page](../../issues/).
+As an educational project at this stage, we are not supposed to accept any PR. Yet we appreciate it if you can report problems on the [issues page](../../issues/).
 
 ## Show your support
 
