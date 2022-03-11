@@ -91,11 +91,15 @@ main {
   backdrop-filter: blur(7px);
   border-radius: 15px;
   box-shadow: 1px 4px 5px #000;
-  transition: all 0.5s ease-in-out;
+  overflow: hidden;
 }
 
 .food-card > img {
+  transition: all 0.5s ease-in-out;
+  display: block;
   border-radius: 15px 15px 0 0;
+  height: 100%;
+  width: 100%;
 }
 
 .mid-sec > .food-title {
@@ -116,6 +120,13 @@ main {
   font-size: 16px;
   border-radius: 0 0  15px 15px;
   border:none;
+}
+
+.food-card:hover > img {
+  transform: scale(1.2);
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 button:focus {
