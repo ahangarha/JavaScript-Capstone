@@ -33,18 +33,38 @@ header {
   justify-content: start;
   align-items: center;
   gap: 2rem;
-  padding: 1rem;
+  padding: 1rem 5rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: rgba(9, 73, 9, 0.5);
+  backdrop-filter: blur(7px);
+  z-index: 100;
 }
 
-/* header .branding {
+header .branding {
   font-weight: 700;
-  font-size: 1.25rem;
-} */
+  font-size: 2.25rem;
+  font-family: 'Rye', cursive;
+  color: yellow;
+  text-shadow: 2px 2px #ff0000;
+}
 
 header .nav-links {
   display: flex;
   gap: 1rem;
   list-style: none;
+}
+
+.nav-links li {
+  height: 100%;
+  text-align: center;
+}
+
+
+.nav-links li:hover{
+  transform: scale(0.9);
+  background-color: rgb(8, 49, 8)
 }
 
 main {
@@ -67,13 +87,26 @@ main {
   max-width: 100%;
   margin-bottom: 50px;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(7px);
+  border-radius: 15px;
+  box-shadow: 1px 4px 5px #000;
+  transition: all 0.5s ease-in-out;
+}
+
+.food-card > img {
+  border-radius: 15px 15px 0 0;
+}
+
+.mid-sec > .food-title {
+  width: 65%;
 }
 
 .food-card > .mid-sec {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 2rem 0;
   padding: 0 10px;
 }
 
@@ -81,9 +114,8 @@ main {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border-radius: 5px;
-  border: 2px solid #000;
-  box-shadow: 1px 4px 5px #000;
+  border-radius: 0 0  15px 15px;
+  border:none;
 }
 
 button:focus {
