@@ -5,6 +5,8 @@
 
 This is an educational project to make a web application that gets and posts data to APIs. In this project, one can see a list of Jamaican meals, like them, or leave comments for each.
 
+A **live demo** of of this project is [available here](https://ahangarha.github.io/JavaScript-Capstone/).
+
 ## Screenshot
 
 ![Taste Jamaica](./screenshot.png)
