@@ -17,19 +17,17 @@ const foodListWrapper = document.getElementById('home');
 const commentPopup = document.getElementById('comment-popup');
 const itemCounter = document.getElementById('counter');
 
-export function getComments(id) {
-  return new Promise((resolve) => {
-    const parameter = `?item_id=${id}`;
-    const COMMENT_API = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT + parameter;
-    getData(COMMENT_API).then((commentsFromAPI) => {
-      if (commentsFromAPI.error) commentsFromAPI = [];
-      foodList.addComments(id, commentsFromAPI);
-      resolve();
-    });
+export const getComments = (id) => new Promise((resolve) => {
+  const parameter = `?item_id=${id}`;
+  const COMMENT_API = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT + parameter;
+  getData(COMMENT_API).then((commentsFromAPI) => {
+    if (commentsFromAPI.error) commentsFromAPI = [];
+    foodList.addComments(id, commentsFromAPI);
+    resolve();
   });
-}
+});
 
-function postComment(id, input, textarea) {
+const postComment = (id, input, textarea) => {
   const ADD_COMMENT_URL = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT;
   const data = {
     item_id: id,
@@ -48,9 +46,9 @@ function postComment(id, input, textarea) {
         </li> `;
     }
   });
-}
+};
 
-export function displayPopUp(id) {
+export const displayPopUp = (id) => {
   commentPopup.classList.add('show');
   commentPopup.innerHTML = `      <div id="close-popup-button">&times;</div>
     <div class="comment-popup-wrapper">
@@ -72,16 +70,14 @@ export function displayPopUp(id) {
           required
           id="messageField"
         ></textarea>
-        <button id="button">Submit</button>
+        <button id="button" type="submit">Submit</button>
       </form>
     </div>`;
 
-  const nameField = document.getElementById('nameField');
-  const messageField = document.getElementById('messageField');
-  const btn = document.getElementById('button');
-  btn.addEventListener('click', (e) => {
+  const commentForm = document.getElementById('comment-form');
+  commentForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    postComment(id, nameField, messageField);
+    postComment(id, e.target.name, e.target.comment);
   });
 
   const closeBtn = document.getElementById('close-popup-button');
@@ -113,9 +109,9 @@ export function displayPopUp(id) {
       commentWrapper.innerHTML = 'no comments';
     }
   });
-}
+};
 
-export function likeFood(id) {
+export const likeFood = (id) => {
   const url = INV_API_BASE + INV_API_KEY + LIKES_ENDPOINT;
   const data = {
     item_id: id,
@@ -131,9 +127,9 @@ export function likeFood(id) {
       counterElement.innerHTML = foodList.getLikesText(id);
     }
   });
-}
+};
 
-export function showAllFood() {
+export const showAllFood = () => {
   // clear loading text
   foodListWrapper.innerHTML = '';
 
@@ -170,30 +166,26 @@ export function showAllFood() {
       likeFood(foodId);
     });
   });
-}
+};
 
-export function getAllFoodData() {
-  return new Promise((resolve) => {
-    getData(ALL_FOOD_API_URL).then((res) => {
-      foodList.addFoods(res.meals);
-      resolve();
-    });
+export const getAllFoodData = () => new Promise((resolve) => {
+  getData(ALL_FOOD_API_URL).then((res) => {
+    foodList.addFoods(res.meals);
+    resolve();
   });
-}
+});
 
-export function getAllLikes() {
-  return new Promise((resolve) => {
-    const ALL_LIKES_API_URL = INV_API_BASE + INV_API_KEY + LIKES_ENDPOINT;
-    getData(ALL_LIKES_API_URL).then((likesFromAPI) => {
-      likesFromAPI.forEach((likeObject) => {
-        foodList.setLikes(likeObject.item_id, likeObject.likes);
-      });
-      resolve();
+export const getAllLikes = () => new Promise((resolve) => {
+  const ALL_LIKES_API_URL = INV_API_BASE + INV_API_KEY + LIKES_ENDPOINT;
+  getData(ALL_LIKES_API_URL).then((likesFromAPI) => {
+    likesFromAPI.forEach((likeObject) => {
+      foodList.setLikes(likeObject.item_id, likeObject.likes);
     });
+    resolve();
   });
-}
+});
 
-export function displayitemCounter() {
+export const displayitemCounter = () => {
   const size = foodList.getItemsCount();
   itemCounter.innerHTML = `<span class="badge">${size}<span>`;
-}
+};
