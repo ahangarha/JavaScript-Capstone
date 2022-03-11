@@ -70,7 +70,7 @@ export function displayPopUp(id) {
     const commentWrapper = document.getElementById('comments');
     if (comments.length) {
       // add counter to comments header
-      commentsHeader.innerHTML += `<span>${foodList.getCommentsCount(id)}</span>`;
+      commentsHeader.innerHTML += `<span class="badge">${foodList.getCommentsCount(id)}</span>`;
 
       comments.forEach((comment) => {
         commentWrapper.innerHTML += `<li class="comment">
@@ -164,5 +164,5 @@ export function getAllLikes() {
 
 export function displayitemCounter() {
   const size = foodList.getItemsCount();
-  itemCounter.innerHTML = `(${size})`;
+  itemCounter.innerHTML = `<span class="badge">${size}<span>`;
 }

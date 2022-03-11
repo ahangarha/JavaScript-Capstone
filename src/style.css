@@ -74,6 +74,7 @@ header .branding {
 header .nav-links {
   display: flex;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links li {
@@ -316,13 +317,16 @@ footer p {
   align-items: center;
 }
 
-#comments-header span {
+.badge {
   margin: 0.5rem;
   padding: 0.25rem;
   font-size: 0.7rem;
   border-radius: 0.75rem;
   background: #e3ac05;
   color: #000c;
+  min-width: 1.5rem;
+  display: inline-block;
+  text-align: center;
 }
 
 #comments {
