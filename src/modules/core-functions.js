@@ -43,11 +43,12 @@ export function displayPopUp(id) {
 
       <h3>Add Comment:</h3>
       <form id="comment-form">
-        <input type="text" name="name" placeholder="Your Name" />
+        <input type="text" name="name" placeholder="Your Name" required/>
         <textarea
           name="comment"
           rows="5"
           placeholder="Your Comment"
+          required
         ></textarea>
         <button id="button">Submit</button>
       </form>
@@ -114,9 +115,9 @@ export function showAllFood() {
         <h3 class="food-title">${food.title}</h3>
         <div class="likes">
           <i class="fa fa-heart" aria-hidden="true"></i>
-          <small class="likes-counter">
+          <div class="likes-counter">
             ${foodList.getLikesText(foodId)}
-          </small>
+          </div>
         </div>
       </div>
       <button class="btn comments-button">more</button>
