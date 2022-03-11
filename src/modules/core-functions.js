@@ -113,13 +113,13 @@ export function showAllFood() {
       <div class="mid-sec">
         <h3 class="food-title">${food.title}</h3>
         <div class="likes">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <div class="likes-counter">
+          <i class="fa fa-heart" aria-hidden="true"></i>
+          <small class="likes-counter">
             ${foodList.getLikesText(foodId)}
-          </div>
+          </small>
         </div>
       </div>
-      <button class="btn comments-button">comments</button>
+      <button class="btn comments-button">more</button>
     </div>
     `;
   });

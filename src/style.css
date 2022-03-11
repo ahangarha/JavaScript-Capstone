@@ -114,7 +114,20 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 5px;
+}
+
+.likes > i {
+  color: rgb(211, 151, 151);
+  transition: all 1s ease;
+}
+
+.likes > i:active {
+  color: red;
+}
+
+.likes > .likes-counter {
+  color: #fff;
 }
 
 .comments-button {
@@ -123,10 +136,16 @@ main {
   font-size: 16px;
   border-radius: 0 0  15px 15px;
   border:none;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.7s ease;
+}
+
+.comments-button:focus{
+  transform: scale(0.9);
 }
 
 .food-card:hover > img {
-  transform: scale(1.2);
+  transform: scale(1.15);
   display: block;
 }
 
@@ -143,10 +162,12 @@ footer {
 #comment-popup {
   position: fixed;
   inset: 0;
-  padding: 1rem;
-  background: #0009;
+  padding: 7rem;
   max-height: 100vh;
   display: none;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
 }
 
 #comment-popup.show {
@@ -163,18 +184,22 @@ footer {
   overflow-y: auto;
   height: 100%;
   padding: 1rem;
+  border-radius: 15px;
 }
 
 #close-popup-button {
   position: fixed;
-  right: 1rem;
-  top: 1rem;
+  right: 7rem;
+  top: 7rem;
+  height: 40px;
+  width: 40px;
   font-size: 3rem;
   line-height: 2rem;
   z-index: 5;
   padding: 0.5rem;
   background-color: #fff;
   cursor: pointer;
+  border-radius: 50%;
 }
 
 #comment-popup #food-image {
