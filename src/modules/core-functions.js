@@ -22,7 +22,12 @@ export const getComments = (id) => new Promise((resolve) => {
   const COMMENT_API = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT + parameter;
   getData(COMMENT_API).then((commentsFromAPI) => {
     if (commentsFromAPI.error) commentsFromAPI = [];
-    foodList.addComments(id, commentsFromAPI);
+    const validComments = commentsFromAPI.filter((theComment) => {
+      const username = theComment.username.trim();
+      const comment = theComment.comment.trim();
+      return (username.length && comment.length);
+    });
+    foodList.addComments(id, validComments);
     resolve();
   });
 });
