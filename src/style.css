@@ -169,7 +169,7 @@ main {
 
 .comments-button {
   width: 100%;
-  padding: 15px 10px;
+  padding: 1rem 0.75rem;
   font-size: 16px;
   border-radius: 0 0  15px 15px;
   border: none;
@@ -304,11 +304,19 @@ footer p {
   cursor: pointer;
 }
 
+#comment-popup .info-section,
+#comment-popup .comments-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
 #comment-popup #food-image {
   display: block;
   max-width: 100%;
   max-height: 20rem;
-  border-radius: 10px;
+  border-radius: 0.75rem;
   box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.4);
 }
 
@@ -337,17 +345,12 @@ footer p {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  color: #fff;
-}
-
-.comment-popup-wrapper #food-description {
-  width: 90%;
-  margin: 0 auto;
+  color: #b1e7bf;
 }
 
 #comments li {
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 0 1.5rem 1.5rem 1.5rem;
   box-shadow: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
 }
@@ -358,10 +361,11 @@ footer p {
 
 #comments li .comment-author {
   font-weight: 700;
+  font-size: 0.9rem;
 }
 
 #comments li .comment-message {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
 }
 
 #comment-form {
@@ -376,30 +380,25 @@ footer p {
 #comment-form input,
 #comment-form textarea {
   padding: 0.5rem;
-  border: none;
-  border-radius: 10px;
+  border-radius: 0.75rem;
   width: 100%;
-  box-shadow: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
-}
-
-#comment-form input,
-#comment-form textarea:focus {
-  outline: none;
+  background: none;
+  border: 1px solid #fff7;
+  color: white;
+  font-size: 1.1rem;
 }
 
 #comment-form button {
   align-self: center;
-  width: 30%;
   border: none;
-  border-radius: 10px;
-  margin-top: 15px;
-  padding: 10px 0;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
   box-shadow: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25), 0.125em 0.125em 0.125em rgba(0, 0, 0, 0.15);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 768px) {
   #comment-popup {
-    padding: 10vh;
+    padding: 5vh;
   }
 
   #about .container {
@@ -409,5 +408,33 @@ footer p {
 
   #about .about-text {
     grid-column: 2 span;
+  }
+}
+
+@media (min-width: 992px) {
+  #comment-popup {
+    padding: 10vh 5vh;
+  }
+
+  #comment-popup .comment-popup-wrapper {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  #comment-popup .comments-section {
+    background: #0003;
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  #comment-popup #food-image {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .comment-popup-wrapper #food-title {
+    text-align: left;
   }
 }
