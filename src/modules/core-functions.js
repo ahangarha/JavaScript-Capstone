@@ -22,7 +22,12 @@ export const getComments = (id) => new Promise((resolve) => {
   const COMMENT_API = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT + parameter;
   getData(COMMENT_API).then((commentsFromAPI) => {
     if (commentsFromAPI.error) commentsFromAPI = [];
-    foodList.addComments(id, commentsFromAPI);
+    const validComments = commentsFromAPI.filter((theComment) => {
+      const username = theComment.username.trim();
+      const comment = theComment.comment.trim();
+      return (username.length && comment.length);
+    });
+    foodList.addComments(id, validComments);
     resolve();
   });
 });
@@ -52,26 +57,28 @@ export const displayPopUp = (id) => {
   commentPopup.classList.add('show');
   commentPopup.innerHTML = `      <div id="close-popup-button">&times;</div>
     <div class="comment-popup-wrapper">
-      <img id="food-image" src="${foodList.foods[id].image}" alt="" />
-      <h2 id="food-title">${foodList.foods[id].title}</h2>
-      <p id="food-description">...</p>
+      <div class="info-section">
+        <img id="food-image" src="${foodList.foods[id].image}" alt="" />
+        <h2 id="food-title">${foodList.foods[id].title}</h2>
+        <p id="food-description">...</p>
+      </div>
+      <div class="comments-section">
+        <h3>Add Comment:</h3>
+        <form id="comment-form">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <textarea
+            name="comment"
+            rows="5"
+            placeholder="Your Comment"
+            required
+          ></textarea>
+          <button id="button" type="submit">Submit</button>
+        </form>
 
-      <h3 id="comments-header">Comments:</h3>
-      <ul id="comments">
-      </ul>
-
-      <h3>Add Comment:</h3>
-      <form id="comment-form">
-        <input type="text" name="name" id="nameField" placeholder="Your Name" required />
-        <textarea
-          name="comment"
-          rows="5"
-          placeholder="Your Comment"
-          required
-          id="messageField"
-        ></textarea>
-        <button id="button" type="submit">Submit</button>
-      </form>
+        <h3 id="comments-header">Comments:</h3>
+        <ul id="comments">
+        </ul>
+      </div>
     </div>`;
 
   const commentForm = document.getElementById('comment-form');
