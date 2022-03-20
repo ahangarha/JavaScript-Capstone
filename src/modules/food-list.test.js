@@ -26,6 +26,30 @@ describe('Add food', () => {
     expect(numberOfFood).toBe(2);
     expect(foodList.foods['2'].title).toBe('second food');
   });
+
+  test('add multiple foods', () => {
+    // arrange
+    const foods = [
+      {
+        idMeal: '3',
+        strMeal: 'third',
+        strMealThumb: 'url',
+      },
+      {
+        idMeal: '4',
+        strMeal: 'fourth',
+        strMealThumb: 'url',
+      },
+    ];
+    const numberOfFoodsBeforeAdd = Object.keys(foodList.foods).length;
+
+    // act
+    foodList.addFoods(foods);
+    const numberOfFoodsAfterAdd = Object.keys(foodList.foods).length;
+
+    expect(numberOfFoodsBeforeAdd).toBe(2);
+    expect(numberOfFoodsAfterAdd).toBe(4);
+  });
 });
 
 describe('Get likes', () => {
