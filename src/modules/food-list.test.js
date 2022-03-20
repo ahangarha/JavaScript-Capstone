@@ -114,3 +114,31 @@ describe('count comments', () => {
     expect(foodList.getCommentsCount('111')).toBe(2);
   });
 });
+
+describe('retrieve comments', () => {
+  test('get 0 comments', () => {
+    const foodList = new FoodList();
+    foodList.addFood('111', '', '');
+    expect(foodList.getComments('111')).toEqual([]);
+  });
+
+  test('get 1 comment', () => {
+    const foodList = new FoodList();
+    foodList.addFood('444', '', '');
+    foodList.addComments('444', '');
+    expect(foodList.getComments('444')).toEqual('');
+  });
+});
+
+describe('items in the foods object', () => {
+  test('get 0 items', () => {
+    const foodList = new FoodList();
+    expect(foodList.foods).toBeDefined();
+  });
+
+  test('get 1 items', () => {
+    const foodList = new FoodList();
+    foodList.addFood('111', '', '');
+    expect(foodList.foods).toEqual({ 111: { title: '', image: '', comments: [] } });
+  });
+});
