@@ -125,8 +125,18 @@ describe('retrieve comments', () => {
   test('get 1 comment', () => {
     const foodList = new FoodList();
     foodList.addFood('444', '', '');
-    foodList.addComments('444', '');
-    expect(foodList.getComments('444')).toEqual('');
+    foodList.addComments('444', [{
+      username: 'dan',
+      comment: 'fgfg',
+      date: '2022-01-01',
+    }]);
+    expect(foodList.getComments('444')).toEqual([
+      {
+        username: 'dan',
+        comment: 'fgfg',
+        date: '2022-01-01',
+      },
+    ]);
   });
 });
 
