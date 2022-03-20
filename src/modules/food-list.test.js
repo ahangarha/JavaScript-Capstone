@@ -1,5 +1,10 @@
 import FoodList from './food-list.js';
 
+test('new FoodList object is instanciated', () => {
+  const foodList = new FoodList();
+  expect(foodList.foods).toBeDefined();
+});
+
 describe('Add food', () => {
   const foodList = new FoodList();
 
@@ -20,6 +25,30 @@ describe('Add food', () => {
 
     expect(numberOfFood).toBe(2);
     expect(foodList.foods['2'].title).toBe('second food');
+  });
+
+  test('add multiple foods', () => {
+    // arrange
+    const foods = [
+      {
+        idMeal: '3',
+        strMeal: 'third',
+        strMealThumb: 'url',
+      },
+      {
+        idMeal: '4',
+        strMeal: 'fourth',
+        strMealThumb: 'url',
+      },
+    ];
+    const numberOfFoodsBeforeAdd = Object.keys(foodList.foods).length;
+
+    // act
+    foodList.addFoods(foods);
+    const numberOfFoodsAfterAdd = Object.keys(foodList.foods).length;
+
+    expect(numberOfFoodsBeforeAdd).toBe(2);
+    expect(numberOfFoodsAfterAdd).toBe(4);
   });
 });
 
@@ -101,16 +130,45 @@ describe('count comments', () => {
   test('count multiple comments', () => {
     const foodList = new FoodList();
     foodList.addFood('111', '', '');
-    foodList.addComments('111', [{
-      comment: '',
-      creation_date: '',
-      username: '',
-    },
-    {
-      comment: '',
-      creation_date: '',
-      username: '',
-    }]);
+    foodList.addComments('111', [
+      {
+        comment: '',
+        creation_date: '',
+        username: '',
+      },
+      {
+        comment: '',
+        creation_date: '',
+        username: '',
+      },
+    ]);
     expect(foodList.getCommentsCount('111')).toBe(2);
+  });
+});
+
+describe('retrieve comments', () => {
+  test('get 0 comments', () => {
+    const foodList = new FoodList();
+    foodList.addFood('111', '', '');
+    expect(foodList.getComments('111')).toEqual([]);
+  });
+
+  test('get 1 comment', () => {
+    const foodList = new FoodList();
+    foodList.addFood('444', '', '');
+    foodList.addComments('444', [
+      {
+        username: 'dan',
+        comment: 'fgfg',
+        date: '2022-01-01',
+      },
+    ]);
+    expect(foodList.getComments('444')).toEqual([
+      {
+        username: 'dan',
+        comment: 'fgfg',
+        date: '2022-01-01',
+      },
+    ]);
   });
 });

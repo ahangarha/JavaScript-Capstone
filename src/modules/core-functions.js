@@ -139,7 +139,6 @@ export const likeFood = (id) => {
 export const showAllFood = () => {
   // clear loading text
   foodListWrapper.innerHTML = '';
-
   Object.keys(foodList.foods).forEach((foodId) => {
     const food = foodList.foods[foodId];
     foodListWrapper.innerHTML += `
