@@ -93,7 +93,6 @@ export const displayPopUp = (id) => {
   });
   getComments(id).then(() => {
     const { comments } = foodList.foods[id];
-    console.log(foodList.foods)
     const commentsHeader = document.getElementById('comments-header');
     const commentWrapper = document.getElementById('comments');
     if (comments.length) {
@@ -133,7 +132,6 @@ export const likeFood = (id) => {
 export const showAllFood = () => {
   // clear loading text
   foodListWrapper.innerHTML = '';
-  console.log(foodList.foods);
   Object.keys(foodList.foods).forEach((foodId) => {
     const food = foodList.foods[foodId];
     foodListWrapper.innerHTML += `
