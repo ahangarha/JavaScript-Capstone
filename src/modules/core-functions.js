@@ -27,7 +27,7 @@ export const getComments = (id) => new Promise((resolve) => {
       const comment = theComment.comment.trim();
       return (username.length && comment.length);
     });
-    foodList.addComments(id, validComments);
+    foodList.addComments(id, validComments.reverse());
     resolve();
   });
 });
