@@ -32,6 +32,14 @@ export const getComments = (id) => new Promise((resolve) => {
   });
 });
 
+const humanReadableDate = (strDate) => {
+  const diff = Date.now() - Date.parse(strDate);
+  const diffInDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+  if (diffInDays === 0) return 'Today';
+  if (diffInDays === 1) return 'Yesterday';
+  return `${diffInDays} days ago`;
+};
+
 const postComment = (id, input, textarea) => {
   const ADD_COMMENT_URL = INV_API_BASE + INV_API_KEY + COMMENT_ENDPOINT;
   const data = {
@@ -110,7 +118,7 @@ export const displayPopUp = (id) => {
         commentWrapper.innerHTML += `<li class="comment">
         <div class="comment-header">
           <h4 class="comment-author">${comment.username}</h4>
-          <span class="comment-date">${comment.creation_date}</span>
+          <span class="comment-date">${humanReadableDate(comment.creation_date)}</span>
         </div>
         <p class="comment-message">${comment.comment}</p>
         </li> `;
