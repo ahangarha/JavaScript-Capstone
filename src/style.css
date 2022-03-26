@@ -365,9 +365,19 @@ footer p {
   margin-right: 0;
 }
 
+#comments li .comment-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 #comments li .comment-author {
   font-weight: 700;
   font-size: 0.9rem;
+}
+
+#comments li .comment-date {
+  color: #999;
+  font-size: 0.75rem;
 }
 
 #comments li .comment-message {

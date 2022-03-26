@@ -108,7 +108,10 @@ export const displayPopUp = (id) => {
 
       comments.forEach((comment) => {
         commentWrapper.innerHTML += `<li class="comment">
-        <h4 class="comment-author">${comment.username}</h4>
+        <div class="comment-header">
+          <h4 class="comment-author">${comment.username}</h4>
+          <span class="comment-date">${comment.creation_date}</span>
+        </div>
         <p class="comment-message">${comment.comment}</p>
         </li> `;
       });
